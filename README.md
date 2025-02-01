@@ -14,6 +14,11 @@ This project analyzes bike share data from three major cities: Chicago, New York
 - new_york_city.csv
 - washington.csv
 
+## Features
+- **Data Filtering**: Filter data by city, month, and day of the week.
+- **Statistics**: View key metrics like most popular stations, average trip duration, and user types.
+- **Visualizations**: Generate charts and graphs for better data understanding.
+
 ### Credits
 - Inspired by [Udacity's Data Analyst Nanodegree Program](https://www.udacity.com/).
 - Dataset provided by [Motivate](https://www.motivateco.com/).
