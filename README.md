@@ -26,6 +26,6 @@ This project analyzes bike share data from three major cities: Chicago, New York
 4. Follow the prompts to select a city, month, and day for analysis.
 
 ### Credits
-- Inspired by [Udacity's Data Analyst Nanodegree Program](https://www.udacity.com/).
+- Inspired by [Udacity's Data Science Nanodegree Program](https://www.udacity.com/).
 - Dataset provided by [Motivate](https://www.motivateco.com/).
 
