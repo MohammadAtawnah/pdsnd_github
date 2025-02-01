@@ -198,39 +198,35 @@ def display_raw_data(df):
             print("Invalid input. Please enter 'yes' or 'no'.")
 
 def station_stats(df):
-    """Displays statistics on the most popular stations and trip."""
-
+    """Displays statistics on the most popular stations and trips."""
+    
     if df is None or df.empty:
         print("No data available for station statistics.")
         return
+
     try:
         print('\nCalculating The Most Popular Stations and Trip...\n')
         start_time = time.time()
+
         try:
-            # display most commonly used start station
             common_start = df['Start Station'].mode()[0]
             print(f'Most common start station: {common_start}')
         except (KeyError, IndexError):
             print("Unable to calculate most common start station.")
 
         try:
-            # display most commonly used end station
             common_end = df['End Station'].mode()[0]
             print(f'Most common End station: {common_end}')
-
         except (KeyError, IndexError):
-            print("Unable to calculate most common enf station.")
+            print("Unable to calculate most common end station.")
 
         try:
-            # display most frequent combination of start station and end station trip
-            # to creat a new row that consists of the start station and end station
-            df['route'] = 'From ' + df['Start Station'] + ' to ' + df['End Station']
+            df['route'] = df['Start Station'] + ' to ' + df['End Station']
             common_route = df['route'].mode()[0]
             print(f'Most common route: {common_route}')
         except (KeyError, IndexError):
             print("Unable to calculate most common route.")
-
-
+        
         print("\nThis took %s seconds." % (time.time() - start_time))
         print('-'*40)
 
