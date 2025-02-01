@@ -198,39 +198,35 @@ def display_raw_data(df):
             print("Invalid input. Please enter 'yes' or 'no'.")
 
 def station_stats(df):
-    """Displays statistics on the most popular stations and trip."""
-
+    """Displays statistics on the most popular stations and trips."""
+    
     if df is None or df.empty:
         print("No data available for station statistics.")
         return
+
     try:
         print('\nCalculating The Most Popular Stations and Trip...\n')
         start_time = time.time()
+
         try:
-            # display most commonly used start station
             common_start = df['Start Station'].mode()[0]
             print(f'Most common start station: {common_start}')
         except (KeyError, IndexError):
             print("Unable to calculate most common start station.")
 
         try:
-            # display most commonly used end station
             common_end = df['End Station'].mode()[0]
             print(f'Most common End station: {common_end}')
-
         except (KeyError, IndexError):
-            print("Unable to calculate most common enf station.")
+            print("Unable to calculate most common end station.")
 
         try:
-            # display most frequent combination of start station and end station trip
-            # to creat a new row that consists of the start station and end station
-            df['route'] = 'From ' + df['Start Station'] + ' to ' + df['End Station']
+            df['route'] = df['Start Station'] + ' to ' + df['End Station']
             common_route = df['route'].mode()[0]
             print(f'Most common route: {common_route}')
         except (KeyError, IndexError):
             print("Unable to calculate most common route.")
-
-
+        
         print("\nThis took %s seconds." % (time.time() - start_time))
         print('-'*40)
 
@@ -240,34 +236,29 @@ def station_stats(df):
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
+    # Check if the DataFrame is empty or None
     if df is None or df.empty:
         print("No data available for trip duration statistics.")
         return
 
+    print('\nCalculating Trip Duration...\n')
+    start_time = time.time()
+
+    # Calculate and display total and mean travel time
     try:
-        print('\nCalculating Trip Duration...\n')
-        start_time = time.time()
-        try:
-             # display total travel time
-             total_duration = df['Trip Duration'].sum()
-             print(f'Total travel time: {total_duration} seconds')
+        total_duration = df['Trip Duration'].sum()
+        mean_duration = df['Trip Duration'].mean()
+        
+        print(f'Total travel time: {total_duration} seconds')
+        print(f'Mean travel time: {mean_duration} seconds')
 
-        except KeyError:
-            print("Unable to calculate total travel time.")
-
-        try:
-             # display mean travel time
-             mean_duration = df['Trip Duration'].mean()
-             print(f'Mean travel time: {mean_duration} seconds')
-
-        except KeyError:
-            print("Unable to calculate mean travel time.")
-
-        print("\nThis took %s seconds." % (time.time() - start_time))
-        print('-'*40)
-
+    except KeyError:
+        print("Error: 'Trip Duration' column not found in the DataFrame.")
     except Exception as e:
         print(f"Unexpected error in trip_duration_stats: {str(e)}")
+    finally:
+        print("\nThis took %s seconds." % (time.time() - start_time))
+        print('-' * 40)
 
 def user_stats(df):
     """Displays statistics on bikeshare users."""
