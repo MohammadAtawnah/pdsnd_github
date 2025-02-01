@@ -240,34 +240,29 @@ def station_stats(df):
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
+    # Check if the DataFrame is empty or None
     if df is None or df.empty:
         print("No data available for trip duration statistics.")
         return
 
+    print('\nCalculating Trip Duration...\n')
+    start_time = time.time()
+
+    # Calculate and display total and mean travel time
     try:
-        print('\nCalculating Trip Duration...\n')
-        start_time = time.time()
-        try:
-             # display total travel time
-             total_duration = df['Trip Duration'].sum()
-             print(f'Total travel time: {total_duration} seconds')
+        total_duration = df['Trip Duration'].sum()
+        mean_duration = df['Trip Duration'].mean()
+        
+        print(f'Total travel time: {total_duration} seconds')
+        print(f'Mean travel time: {mean_duration} seconds')
 
-        except KeyError:
-            print("Unable to calculate total travel time.")
-
-        try:
-             # display mean travel time
-             mean_duration = df['Trip Duration'].mean()
-             print(f'Mean travel time: {mean_duration} seconds')
-
-        except KeyError:
-            print("Unable to calculate mean travel time.")
-
-        print("\nThis took %s seconds." % (time.time() - start_time))
-        print('-'*40)
-
+    except KeyError:
+        print("Error: 'Trip Duration' column not found in the DataFrame.")
     except Exception as e:
         print(f"Unexpected error in trip_duration_stats: {str(e)}")
+    finally:
+        print("\nThis took %s seconds." % (time.time() - start_time))
+        print('-' * 40)
 
 def user_stats(df):
     """Displays statistics on bikeshare users."""
