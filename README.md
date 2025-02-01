@@ -19,6 +19,12 @@ This project analyzes bike share data from three major cities: Chicago, New York
 - **Statistics**: View key metrics like most popular stations, average trip duration, and user types.
 - **Visualizations**: Generate charts and graphs for better data understanding.
 
+## How to Use
+1. Clone the repository.
+2. Install the required dependencies (e.g., pandas, numpy).
+3. Run the script 'bike_share_data.py'.
+4. Follow the prompts to select a city, month, and day for analysis.
+
 ### Credits
 - Inspired by [Udacity's Data Analyst Nanodegree Program](https://www.udacity.com/).
 - Dataset provided by [Motivate](https://www.motivateco.com/).
